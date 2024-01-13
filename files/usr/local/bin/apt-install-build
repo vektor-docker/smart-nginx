@@ -1,0 +1,3 @@
+#!/bin/bash -e
+
+[ -n "${BUILD_APTLIST}" ] && apt update && apt  -o Dpkg::Options::="--force-confdef" install -y ${BUILD_APTLIST}

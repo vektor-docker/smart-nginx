@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  nginx:
+    image: smart-nginx
+    restart: unless-stopped
+    privileged: true
+    ulimits:
+      nproc: 512000
+    volumes:
+      - ${STORAGE_DIR:-./tmp}:/config:rw
+      - /var/run/docker.sock:/tmp/docker.sock
+    networks:
+      - appnet
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - LANG=ru_RU.UTF-8
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - http_proxy=${http_proxy}
+      - no_proxy=${no_proxy}
+      - USE_DHPARAM=yes
+      - RESOLVERS=192.168.1.1
+      - DEFAULT_HOST=127.0.0.1
+      - LETSENCRYPT_EMAIL=vektory79@gmail.com
+
+networks:
+  appnet:

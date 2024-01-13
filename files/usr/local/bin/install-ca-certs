@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ -d /config/ca-certificates ]]; then
+    cp --archive --force /config/ca-certificates/* /usr/local/share/ca-certificates
+fi
+update-ca-certificates

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+IFS='
+'
+inotifywait --event close_write --event move --event delete --format '%w %f' --monitor --recursive /config/letsencrypt/live | \
+(
+while read
+do
+    # Получаем имя директории
+    DIR=$(echo ${REPLY} | cut -f 1 -d' ')
+    # Получаем имя файла
+    FILE=$(echo ${REPLY} | cut -f 2 -d' ')
+
+    mdebug "Let's Encrypt keys updated: ${DIR}/${FILE}"
+    nginx -s reload
+done
+)

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+HOSTS="/config/letsencrypt/hosts.txt"
+
+if [ "${LETSENCRYPT_EMAIL}" ]; then
+    while IFS='' read -r host || [[ -n "${host}" ]]; do
+        minfo "Check for /config/letsencrypt/live/${host}"
+        if [ "${host}" ] && [ ! -d "/config/letsencrypt/live/${host}" ]; then
+            minfo "Register /config/letsencrypt/live/${host}"
+            certbot --config /etc/letsencrypt/cli.ini certonly -d ${host}
+            openssl dhparam -dsaparam -out "/config/letsencrypt/live/${host}/dhparam.pem" 4096
+        fi
+    done < "${HOSTS}"
+fi

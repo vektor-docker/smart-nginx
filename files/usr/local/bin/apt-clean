@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+apt clean autoclean
+apt autoremove --yes
+rm -rf /var/lib/apt/lists/*

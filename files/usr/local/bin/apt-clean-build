@@ -1,0 +1,3 @@
+#!/bin/bash -e
+
+apt remove -y ${BUILD_APTLIST}

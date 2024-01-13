@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec docker-gen -interval 10 -watch /app/nginx.tmpl /config/nginx/config/conf.d/default.conf

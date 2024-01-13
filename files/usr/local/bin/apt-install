@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+apt update
+apt -o Dpkg::Options::="--force-confdef" install -y ${BASE_APTLIST} ${APTLIST}

@@ -1,0 +1,14 @@
+{{ $CurrentContainer := where $ "ID" .Docker.CurrentContainerID | first }}
+
+{{ if  eq .Env.DEFAULT_USE_LETSENCRYPT "yes" }}
+{{trim $.Env.DEFAULT_HOST}}
+{{ end }}
+
+{{ range $host, $containers := groupByMulti $ "Env.VIRTUAL_HOST" "," }}
+
+{{ $use_le := trim (or (first (groupByKeys $containers "Env.VIRTUAL_USE_LETSENCRYPT")) "no") }}
+{{ $host := trim $host }}
+    {{ if eq $use_le "yes" }}
+{{$host}}
+    {{ end }}
+{{ end }}

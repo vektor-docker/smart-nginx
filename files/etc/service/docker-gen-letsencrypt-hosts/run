@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+exec docker-gen -watch /app/le-hosts.tmpl /config/letsencrypt/hosts.txt

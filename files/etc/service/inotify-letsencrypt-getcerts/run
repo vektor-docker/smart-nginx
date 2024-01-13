@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+HOSTS="/config/letsencrypt/hosts.txt"
+
+le-check
+
+if [ "${LETSENCRYPT_EMAIL}" ]; then
+    inotifywait -m "${HOSTS}" -e delete_self -e close_write |
+        while read file; do le-check; done
+else
+    while sleep 10; do true; done
+fi
