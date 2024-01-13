@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as BASE
+FROM ubuntu:jammy-20231211.1
 
 MAINTAINER Viktor Verbitsky <vektory79@gmail.com>
 
