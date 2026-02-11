@@ -26,12 +26,12 @@ User gid:    $(id -g ${CURR_USER})
 "
 chown ${verbose} ${CURR_USER}:${CURR_USER} /app /config /defaults
 
-if [[  "$(id -nu ${PUID})" != "${PUSER}" ]]; then
-    mdebug "Change user name from [$(id -nu ${PUID})] to [${PUSER}]";
-    usermod -l ${PUSER} $(id -nu ${PUID});
-fi
+#if [[  "$(id -nu ${PUID})" != "${PUSER}" ]]; then
+#    mdebug "Change user name from [$(id -nu ${PUID})] to [${PUSER}]";
+#    usermod --login ${PUSER} $(id -nu ${PUID});
+#fi
 
-if [[  "$(id -ng ${PUID})" != "${PUSER}" ]]; then
-    mdebug "Change user group from [$(id -ng ${PUID})] to [${PUSER}]";
-    groupmod --new-name ${PUSER} $(id -ng ${PUID});
-fi
+#if [[  "$(id -ng ${PUID})" != "${PUSER}" ]]; then
+#    mdebug "Change user group from [$(id -ng ${PUID})] to [${PUSER}]";
+#    groupmod --new-name ${PUSER} $(id -ng ${PUID});
+#fi

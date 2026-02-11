@@ -24,6 +24,7 @@ services:
       - RESOLVERS=192.168.1.1
       - DEFAULT_HOST=127.0.0.1
       - LETSENCRYPT_EMAIL=vektory79@gmail.com
+      - LOG_LEVEL=DEBUG
 
 networks:
   appnet:
