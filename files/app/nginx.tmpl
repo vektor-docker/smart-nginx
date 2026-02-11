@@ -305,6 +305,26 @@ server {
 		{{ else if (exists "/config/nginx/config/vhost.d/default_location") }}
 		include /config/nginx/config/vhost.d/default_location;
 		{{ end }}
+		
+		{{ $container := index $containers 0 }}
+		
+		{{ if (exists $container.Env.PROXY_READ_TIMEOUT) }}
+		proxy_read_timeout {{ $container.Env.PROXY_READ_TIMEOUT }};
+		{{ else }}
+		proxy_read_timeout 60s;
+		{{ end }}
+
+		{{ if (exists $container.Env.PROXY_CONNECT_TIMEOUT) }}
+		proxy_connect_timeout {{ $container.Env.PROXY_CONNECT_TIMEOUT }};
+		{{ else }}
+		proxy_connect_timeout 60s;
+		{{ end }}
+
+		{{ if (exists $container.Env.PROXY_SEND_TIMEOUT) }}
+		proxy_send_timeout {{ $container.Env.PROXY_SEND_TIMEOUT }};
+		{{ else }}
+		proxy_send_timeout 60s;
+		{{ end }}
 	}
 }
 
@@ -357,6 +377,26 @@ server {
 		include {{ printf "/config/nginx/config/vhost.d/%s_location" $host}};
 		{{ else if (exists "/config/nginx/config/vhost.d/default_location") }}
 		include /config/nginx/config/vhost.d/default_location;
+		{{ end }}
+		
+		{{ $container := index $containers 0 }}
+		
+		{{ if (exists $container.Env.PROXY_READ_TIMEOUT) }}
+		proxy_read_timeout {{ $container.Env.PROXY_READ_TIMEOUT }};
+		{{ else }}
+		proxy_read_timeout 60s;
+		{{ end }}
+
+		{{ if (exists $container.Env.PROXY_CONNECT_TIMEOUT) }}
+		proxy_connect_timeout {{ $container.Env.PROXY_CONNECT_TIMEOUT }};
+		{{ else }}
+		proxy_connect_timeout 60s;
+		{{ end }}
+
+		{{ if (exists $container.Env.PROXY_SEND_TIMEOUT) }}
+		proxy_send_timeout {{ $container.Env.PROXY_SEND_TIMEOUT }};
+		{{ else }}
+		proxy_send_timeout 60s;
 		{{ end }}
 	}
 }

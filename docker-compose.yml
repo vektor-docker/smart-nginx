@@ -25,6 +25,9 @@ services:
       - DEFAULT_HOST=127.0.0.1
       - LETSENCRYPT_EMAIL=vektory79@gmail.com
       - LOG_LEVEL=DEBUG
+      - PROXY_READ_TIMEOUT=300s
+      - PROXY_CONNECT_TIMEOUT=300s
+      - PROXY_SEND_TIMEOUT=300s
 
 networks:
   appnet:
