@@ -308,22 +308,19 @@ server {
 		
 		{{ $container := index $containers 0 }}
 		
-		{{ if (exists $container.Env.PROXY_READ_TIMEOUT) }}
-		proxy_read_timeout {{ $container.Env.PROXY_READ_TIMEOUT }};
-		{{ else }}
-		proxy_read_timeout 60s;
+		{{ $read_timeout := index $container.Env "PROXY_READ_TIMEOUT" }}
+		{{ if $read_timeout }}
+		proxy_read_timeout {{ $read_timeout }};
 		{{ end }}
 
-		{{ if (exists $container.Env.PROXY_CONNECT_TIMEOUT) }}
-		proxy_connect_timeout {{ $container.Env.PROXY_CONNECT_TIMEOUT }};
-		{{ else }}
-		proxy_connect_timeout 60s;
+		{{ $conn_timeout := index $container.Env "PROXY_CONNECT_TIMEOUT" }}
+		{{ if $conn_timeout }}
+		proxy_connect_timeout {{ $conn_timeout }};
 		{{ end }}
 
-		{{ if (exists $container.Env.PROXY_SEND_TIMEOUT) }}
-		proxy_send_timeout {{ $container.Env.PROXY_SEND_TIMEOUT }};
-		{{ else }}
-		proxy_send_timeout 60s;
+		{{ $send_timeout := index $container.Env "PROXY_SEND_TIMEOUT" }}
+		{{ if $send_timeout }}
+		proxy_send_timeout {{ $send_timeout }};
 		{{ end }}
 	}
 }
@@ -381,22 +378,19 @@ server {
 		
 		{{ $container := index $containers 0 }}
 		
-		{{ if (exists $container.Env.PROXY_READ_TIMEOUT) }}
-		proxy_read_timeout {{ $container.Env.PROXY_READ_TIMEOUT }};
-		{{ else }}
-		proxy_read_timeout 60s;
+		{{ $read_timeout := index $container.Env "PROXY_READ_TIMEOUT" }}
+		{{ if $read_timeout }}
+		proxy_read_timeout {{ $read_timeout }};
 		{{ end }}
 
-		{{ if (exists $container.Env.PROXY_CONNECT_TIMEOUT) }}
-		proxy_connect_timeout {{ $container.Env.PROXY_CONNECT_TIMEOUT }};
-		{{ else }}
-		proxy_connect_timeout 60s;
+		{{ $conn_timeout := index $container.Env "PROXY_CONNECT_TIMEOUT" }}
+		{{ if $conn_timeout }}
+		proxy_connect_timeout {{ $conn_timeout }};
 		{{ end }}
 
-		{{ if (exists $container.Env.PROXY_SEND_TIMEOUT) }}
-		proxy_send_timeout {{ $container.Env.PROXY_SEND_TIMEOUT }};
-		{{ else }}
-		proxy_send_timeout 60s;
+		{{ $send_timeout := index $container.Env "PROXY_SEND_TIMEOUT" }}
+		{{ if $send_timeout }}
+		proxy_send_timeout {{ $send_timeout }};
 		{{ end }}
 	}
 }
